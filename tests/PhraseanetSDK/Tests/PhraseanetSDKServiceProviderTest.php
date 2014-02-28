@@ -4,6 +4,7 @@ namespace PhraseanetSDK\Tests;
 
 use PhraseanetSDK\PhraseanetSDKServiceProvider;
 use Silex\Application;
+use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use PhraseanetSDK\Cache\CanCacheStrategy;
@@ -317,6 +318,9 @@ class PhraseanetSDKServiceProviderTest extends \PHPUnit_Framework_TestCase
 
     private function getConfiguredApplication()
     {
-        return new Application();
+        $app = new Application();
+        $app->register(new ServiceControllerServiceProvider());
+
+        return $app;
     }
 }
